@@ -5,8 +5,8 @@ setup(
     license="Apache2",
     description = "Tidal Music Downloader.",
 
-    author = 'YaronH',
-    author_email = "yaronhuang@foxmail.com",
+    author = 'SLTF',
+    author_email = "",
 
     packages = find_packages(),
     include_package_data = True,
