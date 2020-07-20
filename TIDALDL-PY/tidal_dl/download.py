@@ -48,10 +48,10 @@ class Download(object):
         if self.config.showprogress == 'True':
             self.showpro = True
 
-        pathHelper.mkdirs(self.config.outputdir + "/Album/")
-        pathHelper.mkdirs(self.config.outputdir + "/Playlist/")
-        pathHelper.mkdirs(self.config.outputdir + "/Video/")
-        pathHelper.mkdirs(self.config.outputdir + "/Favorite/")
+#        pathHelper.mkdirs(self.config.outputdir + "/Album/")
+#        pathHelper.mkdirs(self.config.outputdir + "/Playlist/")
+#        pathHelper.mkdirs(self.config.outputdir + "/Video/")
+#        pathHelper.mkdirs(self.config.outputdir + "/Favorite/")
 
     def __isNeedDownload(self, path, url):
         curSize = fileHelper.getFileSize(path)
@@ -155,9 +155,9 @@ class Download(object):
         # add year
         if self.config.addyear != 'No':
             if self.config.addyear == 'Before':
-                title = '[' + str(datetime.strptime(albumInfo['releaseDate'], '%Y-%m-%d').year) + '] '+title
+                title = '(' + str(datetime.strptime(albumInfo['releaseDate'], '%Y-%m-%d').year) + ') '+title
             elif self.config.addyear == 'After':
-                title = title+' [' + str(datetime.strptime(albumInfo['releaseDate'], '%Y-%m-%d').year) + ']'
+                title = title+' (' + str(datetime.strptime(albumInfo['releaseDate'], '%Y-%m-%d').year) + ')'
             else:
                 title = title
         
@@ -165,16 +165,8 @@ class Download(object):
         if self.config.addAlbumidbeforefolder == 'True':
             title = '[' + str(albumInfo['id']) + '] ' + title
 
-        # add quality[M] labels and explicit[E] labels
-        flag = ''
-        if 'audioQuality' in albumInfo and albumInfo['audioQuality'] == 'HI_RES' and quality == 'HI_RES':
-            flag = 'M'
-        if 'explicit' in albumInfo and albumInfo['explicit']:
-            flag += 'E'
-        if flag != '':
-            title = '[' + flag + '] '+ title
 
-        targetDir = self.config.outputdir + "/Album/" + author + '/' + title
+        targetDir = self.config.outputdir + author + ' - ' + title + ' [FLAC]'
         targetDir = os.path.abspath(targetDir)
         pathHelper.mkdirs(targetDir)
 
