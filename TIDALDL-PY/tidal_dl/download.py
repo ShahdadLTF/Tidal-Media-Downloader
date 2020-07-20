@@ -201,6 +201,7 @@ class Download(object):
 
         seq = self.tool.getIndexStr(item['trackNumber'], albumInfo['numberOfTracks'])
         if self.config.addhyphen == 'True':
+            seq = sentence.strip()  ##added to remove space
             seq += '. '
         if self.config.artistbeforetitle == 'True':
             seq += pathHelper.replaceLimitChar(albumInfo['artist']['name'], '-') + ' - '
