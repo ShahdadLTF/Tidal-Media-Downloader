@@ -201,7 +201,7 @@ class Download(object):
 
         seq = self.tool.getIndexStr(item['trackNumber'], albumInfo['numberOfTracks'])
         if self.config.addhyphen == 'True':
-            seq += '- '
+            seq += '. '
         if self.config.artistbeforetitle == 'True':
             seq += pathHelper.replaceLimitChar(albumInfo['artist']['name'], '-') + ' - '
         name = seq + pathHelper.replaceLimitChar(item['title'], '-')
