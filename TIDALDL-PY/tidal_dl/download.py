@@ -166,7 +166,7 @@ class Download(object):
             title = '[' + str(albumInfo['id']) + '] ' + title
 
 
-        targetDir = self.config.outputdir + author + ' - ' + title + ' [FLAC]'
+        targetDir = self.config.outputdir + '/' + author + ' - ' + title + ' [FLAC]'
         targetDir = os.path.abspath(targetDir)
         pathHelper.mkdirs(targetDir)
 
@@ -288,11 +288,12 @@ class Download(object):
             # Creat OutputDir
             targetDir = self.__creatAlbumDir(aAlbumInfo, self.config.quality)
             # write msg
-            string = self.tool.convertAlbumInfoToString(aAlbumInfo, aAlbumTracks)
-            with codecs.open(targetDir + "/AlbumInfo.txt", 'w', 'utf-8') as fd:
-                fd.write(string)
+#####            string = self.tool.convertAlbumInfoToString(aAlbumInfo, aAlbumTracks)
+#####            with codecs.open(targetDir + "/AlbumInfo.txt", 'w', 'utf-8') as fd:
+#####                fd.write(string)
             # download cover
-            coverPath = targetDir + '/' + pathHelper.replaceLimitChar(aAlbumInfo['title'], '-') + '.jpg'
+#####            coverPath = targetDir + '/' + pathHelper.replaceLimitChar(aAlbumInfo['title'], '-') + '.jpg'
+            coverPath = targetDir + '/' + 'cover' + '.jpg'
             if aAlbumInfo['cover'] is not None:
                 coverUrl = self.tool.getAlbumArtworkUrl(aAlbumInfo['cover'])
                 netHelper.downloadFile(coverUrl, coverPath)
